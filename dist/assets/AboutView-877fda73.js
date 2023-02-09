@@ -1,1 +1,0 @@
-import{_ as e,o as s,c as t,a as o}from"./index-221b7aa9.js";const c={},n={class:"lg:flex lg:items-center lg:min-h-full"},a=o("h1",null,"This is an about page",-1),_=[a];function l(r,i){return s(),t("div",n,_)}const f=e(c,[["render",l]]);export{f as default};
