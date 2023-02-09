@@ -1,6 +1,6 @@
 # front-end-developer-test
 
-This is the started code for a to-do list CRUD app, the app includes a API with HTTP methods, request parameters, and response formats. The API allows you to perform create, read, update, and delete operations on to-do items.
+This is the starter code for a to-do list CRUD app, the app includes a API with HTTP methods, request parameters, and response formats. The API allows you to perform create, read, update, and delete operations on to-do items.
 
 Please find attached dev link to a wireframe on adobe XD: https://xd.adobe.com/view/a00be909-e110-4907-9a2a-69012c4b4399-f558/
 
