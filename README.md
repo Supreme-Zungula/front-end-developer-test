@@ -18,7 +18,7 @@
 
 Use the official vue docs for reference https://vuejs.org/guide/introduction.html
 
->1. **Node Installation:**Make sure you have the latest version of Node installed.
+>1. **Node Installation:** Make sure you have the latest version of Node installed.
 >2. **Fork the Repository:** Start by forking the repository by clicking the "Fork" button. 
 This creates a copy of the repository under your own account.
 >3. **Clone the Repository:** Go to your Github account and select the repository. 
