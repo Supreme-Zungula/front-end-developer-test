@@ -25,8 +25,8 @@ Use the official vue docs for reference https://vuejs.org/guide/introduction.htm
 This creates a copy of the repository under your own account.
 3. **Clone the Repository:** 
 >Go to your Github account and select the repository. 
-Next, clone the forked repository to your local machine using Git by running the
-command `git clone <forked_repository_url>`
+Next, clone the forked repository to your local machine using Git by running the command 
+`git clone <forked_repository_url>`
 4. **Change directory:** 
 >Cd into your application folder
 5. **Install dependencies:** 
