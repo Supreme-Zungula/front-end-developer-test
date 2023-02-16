@@ -57,7 +57,7 @@ will review your changes and provide feedback. Collaborate with Exigent to impro
 are ready to be merged into the main branch.
 ```
 ```sh
-Keep Your Fork Updated: It's a good practice to keep your fork up-to-date with the changes made to the 
+Keep Your Fork Updated: It is a good practice to keep your fork up-to-date with the changes made to the 
 original repository. mYou can do this by adding the original repository as an upstream remote and pulling
 the changes from there.
 ```
