@@ -68,15 +68,6 @@ original repository. mYou can do this by adding the original repository as an up
 the changes from there.
 ```
 ```sh
-Git clone 
-```
-```sh
-Cd front-end-developer-test
-```
-```sh
-Npm install
-```
-```sh
 Node api/mock.js to open your mock api on  http://localhost:3000/todos
 ```
 Read the api documentation in api/apiDoc.txt for CRUD endpoints.
