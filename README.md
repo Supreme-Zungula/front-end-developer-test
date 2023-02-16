@@ -1,6 +1,6 @@
 # front-end-developer-test
 
-This is the starter code for a to-do list CRUD app, the app includes a API with HTTP methods, request parameters, and response formats. The API allows you to perform create, read, update, and delete operations on to-do items.
+This is the starter code for a to-do list CRUD app, the app includes an API with HTTP methods, request parameters, and response formats. The API allows you to perform create, read, update, and delete operations on to-do items.
 
 Please find attached dev link to a wireframe on adobe XD: https://xd.adobe.com/view/a00be909-e110-4907-9a2a-69012c4b4399-f558/
 
@@ -23,7 +23,34 @@ Use the official vue docs for reference https://vuejs.org/guide/introduction.htm
 Make sure you have the latest version of Node installed.
 ```
 ```sh
-Git clone https://github.com/Exigent-Mind-Factory/front-end-developer-test.git
+Fork the Repository: Start by forking the repository by clicking the "Fork" button. This creates a copy of the repository under your own account.
+```
+```sh
+Clone the Repository: Go to your Github account and select the repository. Next, clone the forked repository to your local machine using Git by running the command git clone <forked_repository_url>
+```
+```sh
+Create a New Branch: Create a new branch in your local repository to work on the changes. For example, you can create a new branch called "my-name" using the command git checkout -b my-name
+```
+```sh
+Make Changes: Make the necessary changes to the codebase in your local branch. Be sure to follow the Exigent's contribution guidelines and coding standards.
+```
+```sh
+Commit Changes: Once the changes are made, commit them with a meaningful commit message using the command git commit -m "Add my feature"
+```
+```sh
+Push Changes: Push the changes to your forked repository using the command git push origin my-name.
+```
+```sh
+Create a Pull Request: Create a new pull request by navigating to the original repository on the hosting platform and clicking the "New pull request" button. Select your fork and branch from the dropdown menus and fill in the necessary information, such as the description of the changes and any related issues or pull requests.
+```
+```sh
+Collaborate and Improve: Once the pull request is created, Exigent, the maintainers of the original repository will review your changes and provide feedback. Collaborate with Exigent to improve your changes until they are ready to be merged into the main branch.
+```
+```sh
+Keep Your Fork Updated: It's a good practice to keep your fork up-to-date with the changes made to the original repository. You can do this by adding the original repository as an upstream remote and pulling the changes from there.
+```
+```sh
+Git clone 
 ```
 ```sh
 Cd front-end-developer-test
