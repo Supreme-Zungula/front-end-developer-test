@@ -105,8 +105,8 @@ npm run lint
 * Comments
 * Higher order components to make code reusable
 * Responsivity for all screen sizes
-* Commit and Push your changes regularly and frequently. This means that you should make small,incremental changes to your
-code and commit them as you go, rather than making large, sweeping changes,and committing them all at once.
+* Commit and Push your changes regularly and frequently. This means that you should make small,incremental changes
+to your code and commit them as you go, rather than making large, sweeping changes,and committing them all at once.
 ```
 ## As a bonus (not required):
 ```sh
