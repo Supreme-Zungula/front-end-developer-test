@@ -23,16 +23,16 @@ Use the official vue docs for reference https://vuejs.org/guide/introduction.htm
 This creates a copy of the repository under your own account.
 >3. Clone the Repository: Go to your Github account and select the repository. 
 Next, clone the forked repository to your local machine using Git by running the
-command git clone <forked_repository_url>
+command `git clone <forked_repository_url>`
 >4. Cd into your application folder
->5. To install dependencies run npm install in your app folder.
+>5. To install dependencies run `npm install` in your app folder.
 >6. Create a New Branch: Create a new branch in your local repository to work on the changes. 
-For example, you can create a new branch called "my-name" using the command git checkout -b my-name
+For example, you can create a new branch called "my-name" using the command `git checkout -b my-name`
 >7. Make Changes: Make the necessary changes to the codebase in your local branch. 
 Be sure to follow the Exigent's contribution guidelines and coding standards.
 >8. Commit Changes: Once the changes are made, commit them with a meaningful 
-commit message using the command git commit -m "Add my feature"
->9. Push Changes: Push the changes to your forked repository using the command git push origin my-name.
+commit message using the command `git commit -m "Add my feature"`
+>9. Push Changes: Push the changes to your forked repository using the command `git push origin my-name`
 >10. Create a Pull Request: Create a new pull request by navigating to the original repository on the hosting 
 platform and clicking the "New pull request" button. Select your fork and branch from the dropdown menus and 
 fill in the necessary information, such as the description of the changes and any related issues or pull requests.
@@ -44,31 +44,29 @@ original repository. You can do this by adding the original repository as an ups
 the changes from there.
 
 ## Mock API
-```sh
-Node api/mock.js to open your mock api on  http://localhost:3000/todos
-```
+
+>`Node api/mock.js` to open your mock api on  http://localhost:3000/todos
+
 Read the api documentation in api/apiDoc.txt for CRUD endpoints.
 
 ## Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
+>`npm run dev`
 
 ## Compile and Minify for Production
 
-```sh
-npm run build
-```
+
+>`npm run build`
+
 
 ## Lint with [ESLint](https://eslint.org/)
 
-```sh
-npm run lint
-```
+
+>`npm run lint`
+
 
 ## You need to code this design using the following architecture (This has been setup for you just clone the repo and npm install): 
-```sh
+>
 * VueJS 3 - options api or composition api
 * Pinia - Global state management
 * Vue Router - for navigation, nested dynamic routes, route guarding, 404 page
@@ -76,20 +74,20 @@ npm run lint
 * localStorage - to persist the data
 * Axios - For API calls
 * ExpressJS - Mock DB to test CRUD capability and Authentication of app
-```
+
 ## Your code should include the following:
-```sh
+>
 * Comments
 * Higher order components to make code reusable
 * Responsivity for all screen sizes
 * Commit and Push your changes regularly and frequently. This means that you should make small,incremental changes
   to your code and commit them as you go, rather than making large, sweeping changes,and committing them all at once.
-```
+
 ## As a bonus (not required):
-```sh
+>
 * Typescript
 * Unit Testing
-```
+
 
 
 
