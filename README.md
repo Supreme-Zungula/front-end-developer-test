@@ -66,26 +66,26 @@ the changes from there.
 
 ## You need to code this design using the following architecture (This has been setup for you just clone the repo and npm install): 
 >
-* VueJS 3 - options api or composition api
-* Pinia - Global state management
-* Vue Router - for navigation, nested dynamic routes, route guarding, 404 page
-* TailwindCSS - for CSS
-* localStorage - to persist the data
-* Axios - For API calls
-* ExpressJS - Mock DB to test CRUD capability and Authentication of app
+>* VueJS 3 - options api or composition api
+>* Pinia - Global state management
+>* Vue Router - for navigation, nested dynamic routes, route guarding, 404 page
+>* TailwindCSS - for CSS
+>* localStorage - to persist the data
+>* Axios - For API calls
+>* ExpressJS - Mock DB to test CRUD capability and Authentication of app
 
 ## Your code should include the following:
 >
-* Comments
-* Higher order components to make code reusable
-* Responsivity for all screen sizes
-* Commit and Push your changes regularly and frequently. This means that you should make small,incremental changes
+>* Comments
+>* Higher order components to make code reusable
+>* Responsivity for all screen sizes
+>* Commit and Push your changes regularly and frequently. This means that you should make small,incremental changes
   to your code and commit them as you go, rather than making large, sweeping changes,and committing them all at once.
 
 ## As a bonus (not required):
 >
-* Typescript
-* Unit Testing
+>* Typescript
+>* Unit Testing
 
 
 
