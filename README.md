@@ -64,30 +64,31 @@ Keep Your Fork Updated: It is a good practice to keep your fork up-to-date with 
 original repository. mYou can do this by adding the original repository as an upstream remote and pulling
 the changes from there.
 ```
+## Mock API
 ```sh
 Node api/mock.js to open your mock api on  http://localhost:3000/todos
 ```
 Read the api documentation in api/apiDoc.txt for CRUD endpoints.
 
-### Compile and Hot-Reload for Development
+## Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Compile and Minify for Production
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
 
-### You need to code this design using the following architecture (This has been setup for you just clone the repo and npm install): 
+## You need to code this design using the following architecture (This has been setup for you just clone the repo and npm install): 
 
 * VueJS 3 - options api or composition api
 * Pinia - Global state management
@@ -97,14 +98,14 @@ npm run lint
 * Axios - For API calls
 * ExpressJS - Mock DB to test CRUD capability and Authentication of app
 
-### Your code should include the following:
+## Your code should include the following:
 
 * Comments
 * Higher order components to make code reusable
 * Responsivity for all screen sizes
 * Push often and regularly
 
-### As a bonus (not required):
+## As a bonus (not required):
 
 * Typescript
 * Unit Testing
