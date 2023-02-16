@@ -32,6 +32,12 @@ Next, clone the forked repository to your local machine using Git by running the
 command git clone <forked_repository_url>
 ```
 ```sh
+Cd into your application folder
+```
+```sh
+To install dependencies run npm install in your app folder.
+```
+```sh
 Create a New Branch: Create a new branch in your local repository to work on the changes. 
 For example, you can create a new branch called "my-name" using the command git checkout -b my-name
 ```
