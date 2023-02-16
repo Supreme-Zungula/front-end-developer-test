@@ -46,7 +46,8 @@ the changes from there.
 ## Mock API
 
 >`node api/mock.js` to open your mock api on  http://localhost:3000/todos
->Read the api documentation in api/apiDoc.txt for CRUD endpoints.
+
+>Read the api documentation in [API Documetation](https://github.com/Exigent-Mind-Factory/front-end-developer-test/blob/main/api/apiDoc.md) for CRUD endpoints.
 
 ## Compile and Hot-Reload for Development
 
