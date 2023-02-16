@@ -28,7 +28,8 @@ This creates a copy of the repository under your own account.
 ```
 ```sh
 Clone the Repository: Go to your Github account and select the repository. 
-Next, clone the forked repository to your local machine using Git by running the command git clone <forked_repository_url>
+Next, clone the forked repository to your local machine using Git by running the
+command git clone <forked_repository_url>
 ```
 ```sh
 Create a New Branch: Create a new branch in your local repository to work on the changes. 
@@ -56,8 +57,9 @@ will review your changes and provide feedback. Collaborate with Exigent to impro
 are ready to be merged into the main branch.
 ```
 ```sh
-Keep Your Fork Updated: It's a good practice to keep your fork up-to-date with the changes made to the original repository. 
-You can do this by adding the original repository as an upstream remote and pulling the changes from there.
+Keep Your Fork Updated: It's a good practice to keep your fork up-to-date with the changes made to the 
+original repository. mYou can do this by adding the original repository as an upstream remote and pulling
+the changes from there.
 ```
 ```sh
 Git clone 
