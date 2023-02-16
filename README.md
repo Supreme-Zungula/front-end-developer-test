@@ -45,7 +45,7 @@ the changes from there.
 
 ## Mock API
 >
->`Node api/mock.js` to open your mock api on  http://localhost:3000/todos
+>`node api/mock.js` to open your mock api on  http://localhost:3000/todos
 >Read the api documentation in api/apiDoc.txt for CRUD endpoints.
 
 ## Compile and Hot-Reload for Development
