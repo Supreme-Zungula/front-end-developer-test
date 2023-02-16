@@ -14,9 +14,6 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
-```sh
-npm install
-```
 Use the official vue docs for reference https://vuejs.org/guide/introduction.html
 
 ```sh
