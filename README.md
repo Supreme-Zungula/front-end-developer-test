@@ -63,7 +63,7 @@ are ready to be merged into the main branch.
 ```
 ```sh
 12. Keep Your Fork Updated: It is a good practice to keep your fork up-to-date with the changes made to the 
-original repository. mYou can do this by adding the original repository as an upstream remote and pulling
+original repository. You can do this by adding the original repository as an upstream remote and pulling
 the changes from there.
 ```
 ## Mock API
