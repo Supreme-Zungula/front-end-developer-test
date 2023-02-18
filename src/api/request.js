@@ -5,8 +5,6 @@ import axios from "axios";
  * @param {Object} request request data
  */
 export function request(request) {
-  axios.defaults.baseURL = "http://localhost:3000";
-
   if (request && request.method) {
     switch (request.method.toLowerCase()) {
       case "get":
@@ -27,14 +25,18 @@ export function request(request) {
 
 function getRequest(request) {
   if (request && request.params) {
-    return axios.get(request.url, { params: request.params });
+    return axios.get(request.url, {
+      params: request.params,
+    });
   }
   return axios.get(request.url);
 }
 
 function postRequest(request) {
   if (request && request.data) {
-    return axios.post(request.url, request.data);
+    return axios.post(request.url, {
+      data: request.data,
+    });
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`
@@ -44,7 +46,9 @@ function postRequest(request) {
 
 function updateRequest(request) {
   if (request && request.method && request.data) {
-    return axios.put(request.url, request.data);
+    return axios.put(request.url, {
+      data: request.data,
+    });
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`
@@ -54,7 +58,9 @@ function updateRequest(request) {
 
 function deleteRequest(request) {
   if (request && request.data) {
-    return axios.delete(request.url, { params: request.params });
+    return axios.delete(request.url, {
+      params: request.params,
+    });
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`
