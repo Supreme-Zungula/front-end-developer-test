@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <AddItem />
+    <AddItem/>
     <div v-if="isLoading.todoList">
       <h2>Loading todo items...</h2>
     </div>
