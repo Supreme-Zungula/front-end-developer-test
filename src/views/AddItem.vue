@@ -1,6 +1,6 @@
 <template>
   <div class="add-todo-container">
-    <h2 class="text-xl">Add a new task</h2>
+    <h2 class="text-xl font-bold">Add a new task</h2>
     <div class="add-todo-form">
       <input
         type="text"

@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       todoList: [],
-      selectedItems: [],
+      selectedOne: false,
       selectedAll: false,
       isLoading: {
         todoList: false,
@@ -78,6 +78,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * API call: fetches Todo list from DB
+     */
     fetchTodoList() {
       this.isLoading.todoList = true;
       getTodoList()
@@ -102,6 +105,7 @@ export default {
     selectItem(todo) {
       this.todoList = this.todoList.map((item) => {
         if (item.id === todo.id) {
+          this.selectedOne = !this.selectedOne;
           return { ...item, selected: !todo.selected };
         }
         return item;
@@ -124,7 +128,7 @@ export default {
         return;
       }
       let promises = [];
-      this.todoList.foreEach((item) => {
+      this.todoList.map((item) => {
         if (item.selected) {
           promises.push(deleteTodoItem(item.id));
         }
@@ -147,7 +151,7 @@ export default {
       }
 
       let promises = [];
-      this.todoList.forEach((item) => {
+      this.todoList.map((item) => {
         promises.push(deleteTodoItem(item.id));
       });
 
@@ -159,7 +163,7 @@ export default {
     resolvePromises(promises) {
       Promise.all(promises)
         .then((res) => {
-          console.log(res);
+          this.fetchTodoList();
         })
         .catch((err) => {
           console.error(err);
