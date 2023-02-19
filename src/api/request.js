@@ -23,6 +23,7 @@ export function request(request) {
   }
 }
 
+// GET request
 function getRequest(request) {
   if (request && request.params) {
     return axios.get(request.url, {
@@ -32,11 +33,10 @@ function getRequest(request) {
   return axios.get(request.url);
 }
 
+// POST request
 function postRequest(request) {
   if (request && request.data) {
-    return axios.post(request.url, {
-      data: request.data,
-    });
+    return axios.post(request.url, request.data);
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`
@@ -44,11 +44,10 @@ function postRequest(request) {
   }
 }
 
+// PUT request
 function updateRequest(request) {
   if (request && request.method && request.data) {
-    return axios.put(request.url, {
-      data: request.data,
-    });
+    return axios.put(request.url, request.data);
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`
@@ -56,6 +55,7 @@ function updateRequest(request) {
   }
 }
 
+// DELETE request
 function deleteRequest(request) {
   if (request && request.data) {
     return axios.delete(request.url, {
