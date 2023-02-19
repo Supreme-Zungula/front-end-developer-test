@@ -24,6 +24,11 @@
         @change="watchInput"
       />
     </form>
+    <div
+      :class="message.type === 'success' ? 'text-green-300' : 'text-red-500'"
+    >
+      <p>{{ message.text }}</p>
+    </div>
     <div class="btn-container">
       <button @click="handleCancel" class="danger">Cancel</button>
       <button
@@ -34,7 +39,6 @@
         Register
       </button>
     </div>
-    <p v-if="error.message">{{ error.message }}</p>
   </div>
 </template>
 <script>
@@ -50,8 +54,9 @@ export default {
         password: false,
         details: false,
       },
-      error: {
-        message: null,
+      message: {
+        text: null,
+        type: null,
       },
     };
   },
@@ -63,9 +68,11 @@ export default {
           this.userDetails.username,
           JSON.stringify(this.userDetails)
         );
-        console.log(localStorage);
+        this.message.type = "success";
+        this.message.text = "Your registration was successful.";
       } else {
-        this.error.message = "Username already taken.";
+        this.message.text = "Username already taken.";
+        this.message.type = "error";
       }
     },
     handleCancel() {

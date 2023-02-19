@@ -1,6 +1,10 @@
 <template>
   <div class="app-container">
-    <AddItem />
+    <AddItem
+      @add-task="createNewTask"
+      @select-all="selectAllTasks"
+      @delete-all="deleteAllTasks"
+    />
     <div v-if="isLoading.todoList">
       <h2>Loading todo items...</h2>
     </div>
@@ -11,7 +15,7 @@
   </div>
 </template>
 <script>
-import { getTodoList } from "@/api/todoList";
+import { createTodoItem, getTodoList } from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
 import TodoItem from "./TodoItem.vue";
@@ -53,6 +57,18 @@ export default {
           this.isLoading.todoList = false;
         });
     },
+    createNewTask(task) {
+      createTodoItem(task)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+
+    selectAllTasks() {},
+    deleteAllTasks() {},
   },
 };
 </script>

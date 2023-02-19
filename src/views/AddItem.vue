@@ -44,6 +44,7 @@ export default {
       task: {
         title: null,
         detail: null,
+        completed: false,
       },
     };
   },
