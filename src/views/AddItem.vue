@@ -15,10 +15,10 @@
         class="min-w-full text-lg p-1"
       />
     </div>
-    <div class="btn-container">
-      <button class="">Add Task</button>
-      <button class=""></button>
-      <button class=""></button>
+    <div class="btn-container grid grid-cols-2 gap-x-4 gap-y-2 my-2">
+      <button class="bg-green-500 max-w-full min-h-[50px]">Add Task</button>
+      <button class="min-h-[50px] bg-cyan-500">Select All</button>
+      <button class="min-h-[50px] bg-red-500">Delete All</button>
     </div>
   </div>
 </template>
