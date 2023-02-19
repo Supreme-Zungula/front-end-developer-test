@@ -3,7 +3,7 @@
     <AddItem @add-task="createNewTask" />
     <div class="grid grid-cols-2 gap-2 text-white text-lg">
       <button class="min-h-[50px] bg-cyan-500 w-full" @click="selectAllTasks">
-        Select All
+        {{ selectedAll ? "Clear select" : "Select All" }}
       </button>
       <button class="min-h-[50px] bg-red-500 w-full" @click="handleDeleteAll">
         Delete All
@@ -101,10 +101,16 @@ export default {
       });
     },
     selectAllTasks() {
+      if (this.selectedAll) {
+        this.todoList = this.todoList.map((item) => {
+          return { ...item, selected: false };
+        });
+      } else {
+        this.todoList = this.todoList.map((item) => {
+          return { ...item, selected: true };
+        });
+      }
       this.selectedAll = !this.selectedAll;
-      this.todoList = this.todoList.map((item) => {
-        return { ...item, selected: !item.selected };
-      });
     },
     deleteAllTasks() {},
   },
