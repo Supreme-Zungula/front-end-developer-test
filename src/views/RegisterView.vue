@@ -34,6 +34,7 @@
         Register
       </button>
     </div>
+    <p v-if="error.message">{{ error.message }}</p>
   </div>
 </template>
 <script>
@@ -49,12 +50,26 @@ export default {
         password: false,
         details: false,
       },
+      error: {
+        message: null,
+      },
     };
   },
   methods: {
+    submitDetails() {
+      if (!localStorage.getItem(this.userDetails.email)) {
+        localStorage.setItem(
+          this.userDetails.email,
+          JSON.stringify(this.userDetails)
+        );
+      } else {
+        this.error.message = "Email address already used.";
+      }
+    },
+    handleCancel() {
+      this.$router.push({ name: "Login" });
+    },
     watchInput(event) {
-      debugger;
-
       switch (event.target.name) {
         case "email":
           this.isFilledIn.email = true;
@@ -75,12 +90,6 @@ export default {
       ) {
         this.isFilledIn.details = true;
       }
-    },
-    submitDetails() {
-      console.log(this.userDetails);
-    },
-    handleCancel() {
-      this.$router.push({ name: "Login" });
     },
   },
 };
