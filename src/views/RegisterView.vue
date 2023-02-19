@@ -3,27 +3,85 @@
     <h1>Register</h1>
     <form class="app-form">
       <label for="email">Email address</label>
-      <input type="text" name="email" />
+      <input
+        type="text"
+        name="email"
+        v-model="userDetails.email"
+        @change="watchInput"
+      />
       <label for="username">Username</label>
-      <input type="text" name="username" />
+      <input
+        type="text"
+        name="username"
+        v-model="userDetails.username"
+        @change="watchInput"
+      />
       <label for="password">Password</label>
-      <input type="password" name="password" />
+      <input
+        type="password"
+        name="password"
+        v-model="userDetails.password"
+        @change="watchInput"
+      />
     </form>
     <div class="btn-container">
-      <button class="danger">Cancel</button>
-      <button class="default">Register ></button>
+      <button @click="handleCancel" class="danger">Cancel</button>
+      <button
+        @click="submitDetails"
+        class="default"
+        :disabled="!isFilledIn.details"
+      >
+        Register
+      </button>
     </div>
   </div>
 </template>
 <script>
+import UserDetails from "@/classes/UserDetails";
+
 export default {
   data() {
     return {
-        
-    }
+      userDetails: new UserDetails(),
+      isFilledIn: {
+        email: false,
+        username: false,
+        password: false,
+        details: false,
+      },
+    };
   },
   methods: {
-    
+    watchInput(event) {
+      debugger;
+
+      switch (event.target.name) {
+        case "email":
+          this.isFilledIn.email = true;
+          break;
+        case "username":
+          this.isFilledIn.username = true;
+          break;
+        case "password":
+          this.isFilledIn.password = true;
+          break;
+        default:
+          break;
+      }
+      if (
+        this.isFilledIn.email &&
+        this.isFilledIn.username &&
+        this.isFilledIn.password
+      ) {
+        this.isFilledIn.details = true;
+      }
+    },
+    submitDetails() {
+      console.log(this.userDetails);
+    },
+    handleCancel() {
+      this.$router.push({ name: "Login" });
+    },
   },
 };
 </script>
