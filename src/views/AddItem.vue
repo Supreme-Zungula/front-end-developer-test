@@ -1,42 +1,34 @@
 <template>
   <div class="add-todo-container">
-    <h2 class="text-xl">Add a new task</h2>
+    <h2 class="text-xl font-bold">Add a new task</h2>
     <div class="add-todo-form">
       <input
         type="text"
         name="title"
         placeholder="Task  title"
-        class="min-w-full text-lg p-1 my-2 text-black"
+        class="min-w-full text-lg p-1 my-2 text-black rounded-md"
         v-model="task.title"
       />
       <input
         type="text"
         name="detail"
         placeholder="Task detail"
-        class="min-w-full text-lg p-1 text-black"
+        class="min-w-full text-lg p-1 text-black rounded-md"
         v-model="task.detail"
       />
     </div>
-    <div
-      class="btn-container grid grid-cols-2 gap-x-4 gap-y-2 my-2 text-white text-lg"
-    >
+    <div class="btn-container my-2 text-white text-lg">
       <button
-        class="bg-green-500 max-w-full min-h-[50px]"
+        class="bg-green-500 min-h-[50px] w-full rounded-md"
         :disabled="!detailsFilled()"
         @click="handleAddTask"
       >
         Add Task
       </button>
-      <button class="min-h-[50px] bg-cyan-500" @click="handleSelectAll">
-        Select All
-      </button>
-      <button class="min-h-[50px] bg-red-500" @click="handleDeleteAll">
-        Delete All
-      </button>
     </div>
   </div>
 </template>
-<script>
+<script scoped>
 export default {
   name: "AddItem",
   data() {
@@ -44,6 +36,7 @@ export default {
       task: {
         title: null,
         detail: null,
+        completed: false,
       },
     };
   },
@@ -56,12 +49,6 @@ export default {
     },
     handleAddTask() {
       this.$emit("add-task", this.task);
-    },
-    handleSelectAll() {
-      this.$emit("select-all");
-    },
-    handleDeleteAll() {
-      this.$emit("delete-all");
     },
   },
 };
