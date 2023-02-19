@@ -57,10 +57,8 @@ function updateRequest(request) {
 
 // DELETE request
 function deleteRequest(request) {
-  if (request && request.data) {
-    return axios.delete(request.url, {
-      params: request.params,
-    });
+  if (request) {
+    return axios.delete(request.url);
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`

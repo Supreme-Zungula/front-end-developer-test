@@ -1,21 +1,27 @@
 <template>
   <div class="app-container">
     <AddItem @add-task="createNewTask" />
-    <div class="grid grid-cols-2 gap-2 text-white text-lg">
-      <button class="min-h-[50px] bg-cyan-500 w-full" @click="selectAllTasks">
+    <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg">
+      <button
+        class="min-h-[50px] bg-cyan-500 w-full rounded-md"
+        @click="selectAllTasks"
+      >
         {{ selectedAll ? "Clear select" : "Select All" }}
       </button>
-      <button class="min-h-[50px] bg-red-500 w-full" @click="handleDeleteAll">
+      <button
+        class="min-h-[50px] bg-red-500 w-full rounded-md"
+        @click="handleDeleteAll"
+      >
         Delete All
       </button>
       <button
-        class="min-h-[50px] bg-yellow-400 w-full"
+        class="min-h-[50px] bg-yellow-400 w-full rounded-md"
         @click="handleDeleteAll"
       >
         Clear Selected
       </button>
       <button
-        class="min-h-[50px] bg-orange-400 w-full"
+        class="min-h-[50px] bg-orange-400 w-full rounded-md"
         @click="handleDeleteAll"
       >
         Delete Selected
@@ -41,7 +47,7 @@
   </div>
 </template>
 <script>
-import { createTodoItem, getTodoList } from "@/api/todoList";
+import { createTodoItem, deleteTodoItem, getTodoList } from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
 import TodoItem from "./TodoItem.vue";
@@ -55,6 +61,7 @@ export default {
   data() {
     return {
       todoList: [],
+      selectedItems: [],
       selectedAll: false,
       isLoading: {
         todoList: false,
@@ -112,7 +119,20 @@ export default {
       }
       this.selectedAll = !this.selectedAll;
     },
-    deleteAllTasks() {},
+    deleteAllTasks() {
+      let promises = [];
+      this.todoList.forEach((item) => {
+        promises.push(deleteTodoItem(item.id));
+      });
+
+      Promise.all(promises)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
   },
 };
 </script>

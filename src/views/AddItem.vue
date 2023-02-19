@@ -6,20 +6,20 @@
         type="text"
         name="title"
         placeholder="Task  title"
-        class="min-w-full text-lg p-1 my-2 text-black"
+        class="min-w-full text-lg p-1 my-2 text-black rounded-md"
         v-model="task.title"
       />
       <input
         type="text"
         name="detail"
         placeholder="Task detail"
-        class="min-w-full text-lg p-1 text-black"
+        class="min-w-full text-lg p-1 text-black rounded-md"
         v-model="task.detail"
       />
     </div>
     <div class="btn-container my-2 text-white text-lg">
       <button
-        class="bg-green-500 min-h-[50px] w-full"
+        class="bg-green-500 min-h-[50px] w-full rounded-md"
         :disabled="!detailsFilled()"
         @click="handleAddTask"
       >
