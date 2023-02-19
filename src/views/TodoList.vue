@@ -16,13 +16,13 @@
       </button>
       <button
         class="min-h-[50px] bg-yellow-400 w-full rounded-md"
-        @click="handleDeleteAll"
+        @click="clearSelectedTasks"
       >
         Clear Selected
       </button>
       <button
         class="min-h-[50px] bg-orange-400 w-full rounded-md"
-        @click="handleDeleteAll"
+        @click="deleteSelectedTasks"
       >
         Delete Selected
       </button>
@@ -119,12 +119,44 @@ export default {
       }
       this.selectedAll = !this.selectedAll;
     },
+    deleteSelectedTasks() {
+      if (this.todoList.length === 0) {
+        return;
+      }
+      let promises = [];
+      this.todoList.foreEach((item) => {
+        if (item.selected) {
+          promises.push(deleteTodoItem(item.id));
+        }
+      });
+      if (promises.length !== 0) {
+        this.resolvePromises(promises);
+      }
+    },
+    clearSelectedTasks() {
+      this.todoList = this.todoList.map((item) => {
+        if (item.selected) {
+          return { ...item, selected: false };
+        }
+        return item;
+      });
+    },
     deleteAllTasks() {
+      if (this.todoList.length === 0) {
+        return;
+      }
+
       let promises = [];
       this.todoList.forEach((item) => {
         promises.push(deleteTodoItem(item.id));
       });
 
+      if (promises.length !== 0) {
+        this.resolvePromises(promises);
+      }
+    },
+
+    resolvePromises(promises) {
       Promise.all(promises)
         .then((res) => {
           console.log(res);
