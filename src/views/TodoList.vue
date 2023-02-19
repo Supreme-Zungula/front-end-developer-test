@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <AddItem/>
+    <AddItem />
     <div v-if="isLoading.todoList">
       <h2>Loading todo items...</h2>
     </div>
@@ -12,6 +12,7 @@
 </template>
 <script>
 import { getTodoList } from "@/api/todoList";
+import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
 import TodoItem from "./TodoItem.vue";
 
@@ -32,6 +33,13 @@ export default {
   mounted() {
     this.fetchTodoList();
   },
+  beforeRouteEnter() {
+    const currentUser = useUserStore();
+    if (!currentUser.isLoggedIn) {
+      this.$router.push({ name: "Login" });
+    }
+  },
+
   methods: {
     fetchTodoList() {
       this.isLoading.todoList = true;
