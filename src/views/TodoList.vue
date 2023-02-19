@@ -10,7 +10,7 @@
       </button>
       <button
         class="min-h-[50px] bg-red-500 w-full rounded-md"
-        @click="handleDeleteAll"
+        @click="deleteAllTasks"
       >
         Delete All
       </button>
@@ -155,6 +155,7 @@ export default {
         promises.push(deleteTodoItem(item.id));
       });
 
+      debugger;
       if (promises.length !== 0) {
         this.resolvePromises(promises);
       }
@@ -162,7 +163,7 @@ export default {
 
     resolvePromises(promises) {
       Promise.all(promises)
-        .then((res) => {
+        .then(() => {
           this.fetchTodoList();
         })
         .catch((err) => {
