@@ -1,9 +1,25 @@
 <template>
   <div>
-    <h1>Todo list view</h1>
+    <AddItem />
+    <TodoItem />
   </div>
 </template>
 <script>
-export default {};
+import AddItem from "./AddItem.vue";
+import TodoItem from "./TodoItem.vue";
+
+export default {
+  name: "TodoList",
+  components: {
+    AddItem,
+    TodoItem,
+  },
+  mounted() {
+    
+  },
+  methods: {
+
+  },
+};
 </script>
 <style lang=""></style>
