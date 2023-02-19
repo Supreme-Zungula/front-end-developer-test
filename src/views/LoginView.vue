@@ -3,27 +3,63 @@
     <h1>Login</h1>
     <form class="login-form">
       <label>Username:</label>
-      <input type="text" name="username" v-model="username" />
+      <input
+        type="text"
+        name="username"
+        v-model="username"
+        @change="watchInput"
+      />
       <label for="password">Password:</label>
-      <input type="password" name="password" v-bind="password" />
+      <input
+        type="password"
+        name="password"
+        v-bind="password"
+        @change="watchInput"
+      />
     </form>
     <div class="btn-container">
-      <button @click="handleLogin">Login</button>
+      <button @click="handleLogin" :disabled="!isFilledIn.details">
+        Login
+      </button>
     </div>
     <RouterLink to="/register">More options...</RouterLink>
   </div>
 </template>
 <script>
 export default {
-  name: "Login",
+  name: "LoginView",
   data() {
     return {
       username: "",
       password: "",
+      isFilledIn: {
+        username: false,
+        password: false,
+        details: false,
+      },
     };
   },
   methods: {
-    handleLogin() {},
+    handleLogin() {
+      if (localStorage.getItem("username")) {
+        let storedData = localStorage.getItem("username");
+        const userData = JSON.parse(storedData);
+      } else {
+        alert("Username not registered. Click More options to register.");
+      }
+    },
+    watchInput(event) {
+      if (event.target.name === "username") {
+        this.isFilledIn.username = true;
+      }
+      if (event.target.name === "password") {
+        this.isFilledIn.password = true;
+      }
+
+      if (this.isFilledIn.username && this.isFilledIn.password) {
+        this.isFilledIn.details = true;
+      }
+    },
   },
 };
 </script>
@@ -46,6 +82,8 @@ export default {
 }
 
 .login-form input {
+  padding: 5px;
+  color: white;
   border: 2px white;
   background: grey;
   border-radius: 5px;
@@ -63,5 +101,9 @@ export default {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid grey;
+}
+
+.btn-container button:disabled {
+  opacity: 0.5;
 }
 </style>
