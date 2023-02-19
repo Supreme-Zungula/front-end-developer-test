@@ -36,7 +36,11 @@ function getRequest(request) {
 // POST request
 function postRequest(request) {
   if (request && request.data) {
-    return axios.post(request.url, request.data);
+    return axios.post(request.url, request.data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } else {
     console.error(
       `ERROR: Incorrect on ${request.method} request: ${request.url}`
