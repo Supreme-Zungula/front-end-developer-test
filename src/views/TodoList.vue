@@ -1,16 +1,26 @@
 <template>
   <div class="app-container">
-    <AddItem
-      @add-task="createNewTask"
-      @select-all="selectAllTasks"
-      @delete-all="deleteAllTasks"
-    />
+    <AddItem @add-task="createNewTask" />
+    <div class="btn-container">
+      <button class="my-2 min-h-[50px] bg-cyan-500 w-[45%]" @click="handleSelectAll">
+        Select All
+      </button>
+      <button class="min-h-[50px] bg-red-500 w-[45%]" @click="handleDeleteAll">
+        Delete All
+      </button>
+    </div>
     <div v-if="isLoading.todoList">
       <h2>Loading todo items...</h2>
     </div>
     <div v-else>
-      <label for="tasks">You have {{ todoList.length }} tasks</label>
-      <TodoItem v-for="todo in todoList" :key="todo.id" :item="todo" />
+      <label for="tasks" class="my-3 p-">You have {{ todoList.length }} tasks</label>
+      <TodoItem
+        v-for="todo in todoList"
+        :key="todo.id"
+        :item="todo"
+        class="hover:border-cyan-400"
+        @click="selectItem(todo)"
+      />
     </div>
   </div>
 </template>
@@ -29,6 +39,7 @@ export default {
   data() {
     return {
       todoList: [],
+      selectedItems: [],
       isLoading: {
         todoList: false,
       },
@@ -66,7 +77,9 @@ export default {
           console.error(err);
         });
     },
-
+    selectItem(item) {
+      console.log(item);
+    },
     selectAllTasks() {},
     deleteAllTasks() {},
   },
