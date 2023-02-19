@@ -57,13 +57,15 @@ export default {
   },
   methods: {
     submitDetails() {
-      if (!localStorage.getItem(this.userDetails.email)) {
+      localStorage.clear();
+      if (!localStorage.getItem(this.userDetails.username)) {
         localStorage.setItem(
-          this.userDetails.email,
+          this.userDetails.username,
           JSON.stringify(this.userDetails)
         );
+        console.log(localStorage);
       } else {
-        this.error.message = "Email address already used.";
+        this.error.message = "Username already taken.";
       }
     },
     handleCancel() {

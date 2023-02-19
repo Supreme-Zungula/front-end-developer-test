@@ -13,7 +13,7 @@
       <input
         type="password"
         name="password"
-        v-bind="password"
+        v-model="password"
         @change="watchInput"
       />
     </form>
@@ -40,12 +40,17 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      if (localStorage.getItem("username")) {
-        let storedData = localStorage.getItem("username");
-        const userData = JSON.parse(storedData);
+    async handleLogin() {
+      if (localStorage.getItem(this.username)) {
+        let storedData = localStorage.getItem(this.username);
+        const userData = await JSON.parse(storedData);
+        debugger;
+        if (this.password === userData.password) {
+          this.$router.push({ name: "TodoList" });
+        }
+        console.log(userData);
       } else {
-        alert("Username not registered. Click More options to register.");
+        alert("Incorrect details, try again or click More options.");
       }
     },
     watchInput(event) {
