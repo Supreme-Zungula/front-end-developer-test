@@ -1,7 +1,12 @@
 <template>
-  <div>
+  <div class="app-container">
     <AddItem />
-    <TodoItem />
+    <div v-if="isLoading.todoList">
+      <h2>Loading todo items...</h2>
+    </div>
+    <div v-else v-for="todo in todoList" :key="todo.id">
+      <TodoItem :item="todo" />
+    </div>
   </div>
 </template>
 <script>
@@ -18,6 +23,9 @@ export default {
   data() {
     return {
       todoList: [],
+      isLoading: {
+        todoList: false,
+      },
     };
   },
   mounted() {
@@ -25,12 +33,15 @@ export default {
   },
   methods: {
     fetchTodoList() {
+      this.isLoading.todoList = true;
       getTodoList()
         .then((res) => {
           this.todoList = res.data.data;
+          this.isLoading.todoList = false;
         })
         .catch((err) => {
           console.error(err);
+          this.isLoading.todoList = false;
         });
     },
   },
