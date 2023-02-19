@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 let todos = [
   { id: 1, title: "Take out the trash", completed: false },
