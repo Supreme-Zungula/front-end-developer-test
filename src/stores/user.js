@@ -6,7 +6,7 @@ export const useUserStore = defineStore("user", {
       username: null,
       email: null,
       password: null,
-      isLoggedIn: false,
+      loggedIn: false,
     };
   },
   actions: {
@@ -14,14 +14,20 @@ export const useUserStore = defineStore("user", {
       this.username = user.username;
       this.email = user.email;
       this.password = user.password;
-      this.isLoggedIn = true;
+      this.loggedIn = true;
     },
 
     logout() {
       this.username = null;
       this.email = null;
       this.password = null;
-      this.isLoggedIn = false;
+      this.loggedIn = false;
+    },
+  },
+
+  getters: {
+    isLoggedIn() {
+      return this.loggedIn;
     },
   },
 });
