@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <AppHeader />
     <AddItem @add-task="createNewTask" />
     <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg">
       <button
@@ -50,6 +51,7 @@
 import { createTodoItem, deleteTodoItem, getTodoList } from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
+import AppHeader from "./AppHeader.vue";
 import TodoItem from "./TodoItem.vue";
 
 export default {
@@ -57,6 +59,7 @@ export default {
   components: {
     AddItem,
     TodoItem,
+    AppHeader,
   },
   data() {
     return {
