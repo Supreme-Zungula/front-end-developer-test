@@ -1,6 +1,7 @@
 <template>
-  <div class="border-2 border-gray-100 rounded-md px-1 mt-4">
+  <div class="border-2 border-gray-100 rounded-md px-2 mt-4">
     <h2 class="text-xl">{{ item.title }}</h2>
+    <p>Task detail</p>
   </div>
 </template>
 <script>
@@ -15,11 +16,7 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    displayItem(item) {
-      console.log(item);
-    },
-  },
+  methods: {},
 };
 </script>
 <style></style>

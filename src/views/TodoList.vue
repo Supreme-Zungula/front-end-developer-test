@@ -4,8 +4,9 @@
     <div v-if="isLoading.todoList">
       <h2>Loading todo items...</h2>
     </div>
-    <div v-else v-for="todo in todoList" :key="todo.id">
-      <TodoItem :item="todo" />
+    <div v-else>
+      <label for="tasks">You have {{ todoList.length }} tasks</label>
+      <TodoItem v-for="todo in todoList" :key="todo.id" :item="todo" />
     </div>
   </div>
 </template>
