@@ -1,30 +1,47 @@
 <template>
-  <div class="container">
-    <h1>Login</h1>
-    <form class="login-form">
-      <label>Username:</label>
-      <input
-        type="text"
-        name="username"
-        v-model="username"
-        @change="watchInput"
-      />
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        v-model="password"
-        @change="watchInput"
-      />
+  <div class="container text-white bg-gray-900 p-10 rounded-lg w-full">
+    <h1 class="text-2xl mb-5 font-bold">Login</h1>
+    <form class="login-form grid grid-rows-2">
+      <div class="mb-6">
+        <label class="block mb-2 text-md dark:text-white font-bold">
+          Username
+        </label>
+        <input
+          type="text"
+          name="username"
+          class="border border-gray-400 text-sm rounded-lg block w-full p-2.5 focus:border-cyan-400 dark:bg-gray-900"
+          v-model="username"
+          @change="watchInput"
+        />
+      </div>
+      <div class="mb-6">
+        <label class="block mb-2 text-md dark:text-white font-bold">
+          Password
+        </label>
+        <input
+          type="password"
+          name="password"
+          class="border border-gray-400 text-sm rounded-lg block w-full p-2.5 focus:border-cyan-400 dark:bg-gray-900"
+          v-model="password"
+          @change="watchInput"
+        />
+      </div>
     </form>
-    <div class="btn-container">
-      <button @click="handleLogin" :disabled="!isFilledIn.details">
+    <div class="py-5 px-5 mx-0 min-w-full flex flex-col items-center">
+      <button
+        @click="handleLogin"
+        :disabled="!isFilledIn.details"
+        class="bg-emerald-400 p-2 rounded-md w-[45%] text-lg"
+      >
         Login
       </button>
     </div>
-    <RouterLink to="/register">More options...</RouterLink>
+    <div class="py-5 px-5 mx-0 min-w-full flex flex-col items-center">
+      <RouterLink to="/register">More options...</RouterLink>
+    </div>
   </div>
 </template>
+
 <script>
 import { useUserStore } from "@/stores/user";
 
@@ -73,47 +90,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-.container h1 {
-  display: inline;
-  font-size: 25px;
-}
-.login-form {
-  display: block;
-  border: 1px solid white;
-  border-radius: 15px;
-  padding: 15px;
-  max-width: 600px;
-  margin: 20px auto;
-}
-.login-form label {
-  display: inline-block;
-  width: 100px;
-}
-
-.login-form input {
-  padding: 5px;
-  color: white;
-  border: 2px white;
-  background: grey;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.btn-container {
-  place-items: center;
-}
-.btn-container button {
-  min-width: 100px;
-  background-color: aqua;
-  color: black;
-  margin: 15px auto;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid grey;
-}
-
-.btn-container button:disabled {
-  opacity: 0.5;
-}
-</style>
+<style scoped></style>
