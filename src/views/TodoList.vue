@@ -1,8 +1,8 @@
 <template>
-  <div class="app-container">
+  <div class="app-container bg-white text-black pb-5">
     <AppHeader />
     <AddItem @add-task="createNewTask" />
-    <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg">
+    <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg mx-5">
       <button
         class="min-h-[50px] bg-cyan-500 w-full rounded-md"
         @click="selectAllTasks"
@@ -28,10 +28,10 @@
         Delete Selected
       </button>
     </div>
-    <div v-if="isLoading.todoList">
+    <div v-if="isLoading.todoList" class="text-4xl mx-5">
       <h2>Loading todo items...</h2>
     </div>
-    <div v-else>
+    <div v-else class="mx-5">
       <label for="tasks" class="my-3 text-lg">
         You have {{ todoList.length }} tasks
       </label>
@@ -39,8 +39,9 @@
         v-for="todo in todoList"
         :key="todo.id"
         :item="todo"
+        :selected="todo.selected"
         :class="
-          todo.selected ? 'border-l-4 border-cyan-400' : 'hover:border-cyan-400'
+          todo.selected ? 'border-l-4 border-cyan-500' : 'hover:border-cyan-500'
         "
         @click="selectItem(todo)"
       />
@@ -74,9 +75,9 @@ export default {
   mounted() {
     this.fetchTodoList();
   },
-  beforeRouteEnter() {
-    const currentUser = useUserStore();
-    if (!currentUser.isLoggedIn) {
+  created() {
+    const userStore = useUserStore();
+    if (!userStore.isLoggedIn) {
       this.$router.push({ name: "Login" });
     }
   },
