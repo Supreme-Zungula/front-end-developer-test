@@ -158,7 +158,6 @@ export default {
         promises.push(deleteTodoItem(item.id));
       });
 
-      debugger;
       if (promises.length !== 0) {
         this.resolvePromises(promises);
       }

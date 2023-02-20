@@ -4,6 +4,7 @@ import { RouterView } from "vue-router";
 
 <template>
   <div>
+    <h1 class="text-white text-3xl">Exigent Todo List</h1>
     <RouterView />
   </div>
 </template>
