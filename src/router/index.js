@@ -18,12 +18,11 @@ const router = createRouter({
       path: "/todos",
       name: "TodoList",
       component: () => import("@/views/TodoList.vue"),
-      // beforeEnter: () => {
-      //   const currentUser = useUserStore();
-      //   if (!currentUser.isLoggedIn) {
-      //     router.push({ name: "Login" });
-      //   }
-      // },
+    },
+    {
+      path: "/settings",
+      name: "Settings",
+      component: () => import("@/views/SettingsView.vue"),
     },
   ],
 });

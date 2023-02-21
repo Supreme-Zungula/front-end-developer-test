@@ -5,13 +5,13 @@
     </h1>
     <div class="grid grid-cols-2 gap-4">
       <button
-        class="bg-white text-red-500 rounded-md p-1 w-[40%] justify-self-start"
+        class="bg-white text-red-500 rounded-2xl w-20 p-1 justify-self-start"
         @click="logout"
       >
         Logout
       </button>
       <button
-        class="bg-white text-cyan-500 rounded-md p-1 w-[40%] justify-self-end"
+        class="bg-white text-cyan-500 rounded-2xl w-20 p-1 justify-self-end"
         @click="goToSettings"
       >
         Settings
@@ -29,7 +29,6 @@ export default {
   },
   computed: {
     currentUser() {
-      // const userStore = useUserStore();
       return useUserStore();
     },
   },
@@ -39,7 +38,7 @@ export default {
       this.$router.push({ name: "Login" });
     },
     goToSettings() {
-      console.log("Go to settings");
+      this.$router.push({ name: "Settings" });
     },
   },
 };

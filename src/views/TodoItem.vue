@@ -9,7 +9,7 @@
     <div class="col-span-1 grid">
       <button
         v-if="selected"
-        class="bg-red-500 rounded-3xl text-white p-3 justify-self-end mr-1 text-lg"
+        class="bg-red-500 rounded-full text-white p-3 justify-self-end"
       >
         X
       </button>

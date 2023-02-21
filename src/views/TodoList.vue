@@ -1,6 +1,6 @@
 <template>
   <div class="app-container bg-white text-black pb-5">
-    <AppHeader />
+    <!-- <AppHeader /> -->
     <AddItem @add-task="createNewTask" />
     <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg mx-5">
       <button
@@ -31,7 +31,7 @@
     <div v-if="isLoading.todoList" class="text-4xl mx-5">
       <h2>Loading todo items...</h2>
     </div>
-    <div v-else class="mx-5">
+    <div v-else class="m-5">
       <label for="tasks" class="my-3 text-lg">
         You have {{ todoList.length }} tasks
       </label>
@@ -52,7 +52,6 @@
 import { createTodoItem, deleteTodoItem, getTodoList } from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
-import AppHeader from "./AppHeader.vue";
 import TodoItem from "./TodoItem.vue";
 
 export default {
@@ -60,7 +59,6 @@ export default {
   components: {
     AddItem,
     TodoItem,
-    AppHeader,
   },
   data() {
     return {
