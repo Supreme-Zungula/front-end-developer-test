@@ -9,8 +9,10 @@
     <div>
       <h2 class="text-xl font-bol">Settings</h2>
       <ul>
-        <li>Review account details</li>
-        <li>Delete my account</li>
+        <li class="hover:cursor-pointer">Review account details</li>
+        <li class="text-red-400 hover:cursor-pointer" @click="showDeleteUser">
+          Delete my account
+        </li>
       </ul>
     </div>
   </div>
@@ -18,9 +20,18 @@
 <script>
 export default {
   name: "SettingsView",
+  components: {},
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   methods: {
     goToPreviousPage() {
       this.$router.go(-1);
+    },
+    showDeleteUser() {
+      this.showModal = !this.showModal;
     },
   },
 };
