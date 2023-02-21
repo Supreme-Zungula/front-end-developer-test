@@ -1,16 +1,21 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-white text-black p-5 mb-5 max-h-screen">
     <button
-      class="bg-cyan-500 text-white p-2 rounded-full w-20"
+      class="bg-cyan-500 text-white rounded-full w-20 max-h-8"
       @click="goToPreviousPage"
     >
       {{ "< Back" }}
     </button>
     <div>
-      <h2 class="text-xl font-bol">Settings</h2>
-      <ul>
-        <li class="hover:cursor-pointer">Review account details</li>
-        <li class="text-red-400 hover:cursor-pointer" @click="showDeleteUser">
+      <h2 class="text-xl font-bold my-4">Settings</h2>
+      <ul class="text-lg">
+        <li class="text-gray-700 hover:cursor-pointer mb-1">
+          Review account details
+        </li>
+        <li
+          class="text-red-400 hover:cursor-pointer mb-2"
+          @click="goToDeletePage"
+        >
           Delete my account
         </li>
       </ul>
@@ -30,8 +35,8 @@ export default {
     goToPreviousPage() {
       this.$router.go(-1);
     },
-    showDeleteUser() {
-      this.showModal = !this.showModal;
+    goToDeletePage() {
+      this.$router.push({ name: "DeleteAccount" });
     },
   },
 };

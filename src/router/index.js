@@ -24,6 +24,11 @@ const router = createRouter({
       name: "Settings",
       component: () => import("@/views/SettingsView.vue"),
     },
+    {
+      path: "/delete-account",
+      name: "DeleteAccount",
+      component: () => import("@/views/DeleteAccount.vue"),
+    },
   ],
 });
 

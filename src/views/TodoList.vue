@@ -1,6 +1,5 @@
 <template>
-  <div class="app-container bg-white text-black pb-5">
-    <!-- <AppHeader /> -->
+  <div class="bg-white text-black p-5 mb-5 max-h-screen">
     <AddItem @add-task="createNewTask" />
     <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg mx-5">
       <button

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid gap-2 grid-rows-2 my-4 p-4 bg-gray-900 text-white">
+  <div class="grid gap-2 grid-rows-2 p-4 bg-gray-900 text-white">
     <h1 class="text-xl font-bold text-center">
       Welcome, {{ currentUser.getUsername }}
     </h1>

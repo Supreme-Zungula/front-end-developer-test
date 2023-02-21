@@ -1,6 +1,8 @@
 <template>
-  <div v-if="show" class="opacity-25 z-50">
-    <slot>Modal View</slot>
+  <div v-if="show" class="modal-bg backdrop-blur-md bg-white/30 ...">
+    <div class="modal z-40 blu">
+      <slot>Modal View</slot>
+    </div>
   </div>
 </template>
 <script>
@@ -15,4 +17,4 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style></style>
