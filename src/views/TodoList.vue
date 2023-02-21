@@ -1,8 +1,7 @@
 <template>
-  <div class="app-container">
-    <AppHeader />
+  <div class="bg-white text-black p-5 mb-5 max-h-screen">
     <AddItem @add-task="createNewTask" />
-    <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg">
+    <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg mx-5">
       <button
         class="min-h-[50px] bg-cyan-500 w-full rounded-md"
         @click="selectAllTasks"
@@ -28,10 +27,10 @@
         Delete Selected
       </button>
     </div>
-    <div v-if="isLoading.todoList">
+    <div v-if="isLoading.todoList" class="text-4xl mx-5">
       <h2>Loading todo items...</h2>
     </div>
-    <div v-else>
+    <div v-else class="m-5">
       <label for="tasks" class="my-3 text-lg">
         You have {{ todoList.length }} tasks
       </label>
@@ -39,19 +38,25 @@
         v-for="todo in todoList"
         :key="todo.id"
         :item="todo"
+        :selected="todo.selected"
         :class="
-          todo.selected ? 'border-l-4 border-cyan-400' : 'hover:border-cyan-400'
+          todo.selected ? 'border-l-4 border-cyan-500' : 'hover:border-cyan-500'
         "
         @click="selectItem(todo)"
+        @done="markItemAsDone(todo)"
       />
     </div>
   </div>
 </template>
 <script>
-import { createTodoItem, deleteTodoItem, getTodoList } from "@/api/todoList";
+import {
+  createTodoItem,
+  deleteTodoItem,
+  getTodoList,
+  updateTodoItem,
+} from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
-import AppHeader from "./AppHeader.vue";
 import TodoItem from "./TodoItem.vue";
 
 export default {
@@ -59,7 +64,6 @@ export default {
   components: {
     AddItem,
     TodoItem,
-    AppHeader,
   },
   data() {
     return {
@@ -74,15 +78,16 @@ export default {
   mounted() {
     this.fetchTodoList();
   },
-  beforeRouteEnter() {
-    const currentUser = useUserStore();
-    if (!currentUser.isLoggedIn) {
+  created() {
+    const userStore = useUserStore();
+    if (!userStore.isLoggedIn) {
       this.$router.push({ name: "Login" });
     }
   },
   methods: {
     /**
-     * API call: fetches Todo list from DB
+     * API call:
+     * fetches all Todo list items
      */
     fetchTodoList() {
       this.isLoading.todoList = true;
@@ -96,14 +101,34 @@ export default {
           this.isLoading.todoList = false;
         });
     },
+
+    /**
+     * API Call:
+     * Adds a new todo task to the list
+     * @param {Object} task selected task
+     */
     createNewTask(task) {
       createTodoItem(task)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          this.fetchTodoList();
         })
         .catch((err) => {
           console.error(err);
         });
+    },
+
+    /**
+     * API Call:
+     * Updates current task and marks it as done.
+     * @param {Object} tasks  selected task
+     */
+    markItemAsDone(task) {
+      task.completed = true;
+      updateTodoItem(task.id, task)
+        .then(() => {
+          this.fetchTodoList();
+        })
+        .catch((err) => console.error(err));
     },
     selectItem(todo) {
       this.todoList = this.todoList.map((item) => {
@@ -158,7 +183,6 @@ export default {
         promises.push(deleteTodoItem(item.id));
       });
 
-      debugger;
       if (promises.length !== 0) {
         this.resolvePromises(promises);
       }
