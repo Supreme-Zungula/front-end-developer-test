@@ -44,12 +44,18 @@
           todo.selected ? 'border-l-4 border-cyan-500' : 'hover:border-cyan-500'
         "
         @click="selectItem(todo)"
+        @done="markItemAsDone(todo)"
       />
     </div>
   </div>
 </template>
 <script>
-import { createTodoItem, deleteTodoItem, getTodoList } from "@/api/todoList";
+import {
+  createTodoItem,
+  deleteTodoItem,
+  getTodoList,
+  updateTodoItem,
+} from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
 import TodoItem from "./TodoItem.vue";
@@ -81,7 +87,8 @@ export default {
   },
   methods: {
     /**
-     * API call: fetches Todo list from DB
+     * API call:
+     * fetches all Todo list items
      */
     fetchTodoList() {
       this.isLoading.todoList = true;
@@ -95,14 +102,34 @@ export default {
           this.isLoading.todoList = false;
         });
     },
+
+    /**
+     * API Call:
+     * Adds a new todo task to the list
+     * @param {Object} task selected task
+     */
     createNewTask(task) {
       createTodoItem(task)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          this.fetchTodoList();
         })
         .catch((err) => {
           console.error(err);
         });
+    },
+
+    /**
+     * API Call:
+     * Updates current task and marks it as done.
+     * @param {Object} tasks  selected task
+     */
+    markItemAsDone(task) {
+      task.completed = true;
+      updateTodoItem(task.id, task)
+        .then(() => {
+          this.fetchTodoList();
+        })
+        .catch((err) => console.error(err));
     },
     selectItem(todo) {
       this.todoList = this.todoList.map((item) => {

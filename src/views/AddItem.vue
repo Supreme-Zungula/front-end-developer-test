@@ -19,7 +19,11 @@
     </div>
     <div class="btn-container my-2 text-white text-lg">
       <button
-        class="bg-green-500 min-h-[50px] w-full rounded-md"
+        :class="
+          detailsFilled()
+            ? 'bg-green-500 min-h-[50px] w-full rounded-md'
+            : 'bg-green-500 min-h-[50px] w-full rounded-md opacity-25'
+        "
         :disabled="!detailsFilled()"
         @click="handleAddTask"
       >
