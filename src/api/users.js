@@ -9,18 +9,10 @@ export function getUserList() {
   });
 }
 
-export function getUserById(id) {
+export function getUser(id) {
   return request({
     url: `/users/${id}`,
     method: "get",
-  });
-}
-
-export function getUserByUsername(username) {
-  return request({
-    url: `/users`,
-    method: "get",
-    data: { username },
   });
 }
 

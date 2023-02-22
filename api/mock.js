@@ -68,12 +68,6 @@ app.get("/users", (req, res) => {
   res.send({ users });
 });
 
-// get user by username
-app.get("/users", (req, res) => {
-  const user = user.find((user) => user.username === req.body.username);
-  res.send({ user });
-});
-
 app.get("/users/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const user = users.find((user) => user.id === id);
