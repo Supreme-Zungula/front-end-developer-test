@@ -1,36 +1,37 @@
+import { useLocalStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
+import { computed, ref } from "vue";
 
-export const useUserStore = defineStore("user", {
-  state: () => {
-    return {
+export const useUserStore = defineStore("user", () => {
+  const user = ref(
+    useLocalStorage("userDetails", {
+      id: null,
       username: null,
       email: null,
       password: null,
       loggedIn: false,
-    };
-  },
-  actions: {
-    login(user) {
-      this.username = user.username;
-      this.email = user.email;
-      this.password = user.password;
-      this.loggedIn = true;
-    },
+    })
+  );
 
-    logout() {
-      this.username = null;
-      this.email = null;
-      this.password = null;
-      this.loggedIn = false;
-    },
-  },
+  const login = (userDetails) => {
+    user.value.id = userDetails.id;
+    user.value.username = userDetails.username;
+    user.value.email = userDetails.email;
+    user.value.password = userDetails.password;
+    user.value.loggedIn = userDetails.isLoggedIn;
+  };
 
-  getters: {
-    isLoggedIn() {
-      return this.loggedIn;
-    },
-    getUsername() {
-      return this.username;
-    },
-  },
+  const logout = () => {
+    user.value.id = null;
+    user.value.username = null;
+    user.value.email = null;
+    user.value.password = null;
+    user.value.loggedIn = false;
+  };
+
+  const isLoggedIn = computed(() => {
+    return user.value.loggedIn;
+  });
+
+  return { user, login, logout, isLoggedIn };
 });

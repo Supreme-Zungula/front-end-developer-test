@@ -10,7 +10,7 @@
           type="text"
           name="username"
           class="border border-gray-400 text-sm rounded-lg block w-full p-2.5 focus:border-cyan-400 dark:bg-gray-900"
-          v-model="username"
+          v-model="userDetails.username"
           @change="watchInput"
         />
       </div>
@@ -22,14 +22,14 @@
           type="password"
           name="password"
           class="border border-gray-400 text-sm rounded-lg block w-full p-2.5 focus:border-cyan-400 dark:bg-gray-900"
-          v-model="password"
+          v-model="userDetails.password"
           @change="watchInput"
         />
       </div>
     </form>
     <div class="py-5 px-5 mx-0 min-w-full flex flex-col items-center">
       <button
-        @click="handleLogin"
+        @click="fetchUsers"
         :disabled="!isFilledIn.details"
         class="bg-emerald-400 p-2 rounded-md w-[45%] text-lg"
       >
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import { getUserList } from "@/api/users";
+import UserDetails from "@/classes/UserDetails";
 import { useUserStore } from "@/stores/user";
 
 export default {
@@ -50,29 +52,39 @@ export default {
   data() {
     return {
       userStore: useUserStore(),
-      username: "",
-      password: "",
+      userDetails: new UserDetails(),
       isFilledIn: {
         username: false,
         password: false,
         details: false,
       },
+      message: {
+        type: null, // options [ default, success, error ]
+        text: "",
+      },
     };
   },
   methods: {
-    async handleLogin() {
-      if (localStorage.getItem(this.username)) {
-        let storedData = localStorage.getItem(this.username);
-        const userData = await JSON.parse(storedData);
-
-        if (this.password === userData.password) {
-          this.userStore.login(userData);
-          console.log(this.userStore);
-          this.$router.push({ name: "TodoList" });
-        }
-        console.log(userData);
+    fetchUsers() {
+      getUserList()
+        .then((res) => {
+          this.handleLogin(res);
+        })
+        .catch((err) => console.error(err));
+    },
+    handleLogin(res) {
+      localStorage.clear();
+      const user = res.data.users.find(
+        (user) => user.username === this.userDetails.username
+      );
+      if (user && user.password === this.userDetails.password) {
+        this.userDetails = new UserDetails(user);
+        this.userDetails.isLoggedIn = true;
+        this.userStore.login(this.userDetails);
+        this.$router.push({ name: "TodoList" });
       } else {
-        alert("Incorrect details, try again or click More options.");
+        this.message.type = "error";
+        this.message.text = "Invalid, try again or click more options.";
       }
     },
     watchInput(event) {

@@ -15,6 +15,16 @@ let todos = [
   { id: 2, title: "Do the dishes", completed: true },
 ];
 
+let users = [
+  {
+    id: 1,
+    username: "supreme",
+    email: "supreme@exigent.co.za",
+    password: "1234",
+  },
+];
+
+/** Todo list end-point */
 app.get("/todos", (req, res) => {
   res.send({ data: todos });
 });
@@ -51,6 +61,48 @@ app.delete("/todos/:id", (req, res) => {
   const todoIndex = todos.findIndex((todo) => todo.id === id);
   todos.splice(todoIndex, 1);
   res.send({ data: todos });
+});
+
+/** Users end-point */
+app.get("/users", (req, res) => {
+  res.send({ users });
+});
+
+app.get("/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const user = users.find((user) => user.id === id);
+  res.send({ data: user });
+});
+
+app.post("/users", (req, res) => {
+  const newUser = {
+    id: users.length + 1,
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  };
+  users.push(newUser);
+  res.send({ data: newUser });
+});
+
+app.put("/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const userIndex = users.findIndex((user) => user.id === id);
+  users[userIndex] = {
+    id,
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    e,
+  };
+  res.send({ data: users[userIndex] });
+});
+
+app.delete("/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const todoIndex = users.findIndex((todo) => todo.id === id);
+  users.splice(todoIndex, 1);
+  res.send({ data: users });
 });
 
 const port = 3000;
