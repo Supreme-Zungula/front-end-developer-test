@@ -78,7 +78,7 @@ export default {
   mounted() {
     this.fetchTodoList();
   },
-  created() {
+  beforeCreate() {
     const userStore = useUserStore();
     if (!userStore.isLoggedIn) {
       this.$router.push({ name: "Login" });

@@ -1,7 +1,7 @@
 <template>
   <div class="grid gap-2 grid-rows-2 p-4 bg-gray-900 text-white">
     <h1 class="text-xl font-bold text-center">
-      Welcome, {{ currentUser.getUsername }}
+      Welcome, {{ userStore.user.username }}
     </h1>
     <div class="grid grid-cols-2 gap-4">
       <button
@@ -28,13 +28,14 @@ export default {
     return {};
   },
   computed: {
-    currentUser() {
+    userStore() {
       return useUserStore();
     },
   },
   methods: {
     logout() {
-      this.currentUser.logout();
+      localStorage.clear();
+      this.userStore.logout();
       this.$router.push({ name: "Login" });
     },
     goToSettings() {

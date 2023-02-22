@@ -58,6 +58,10 @@ export default {
         password: false,
         details: false,
       },
+      message: {
+        type: null, // options [ default, success, error ]
+        text: "",
+      },
     };
   },
   methods: {
@@ -69,15 +73,18 @@ export default {
         .catch((err) => console.error(err));
     },
     handleLogin(res) {
-      debugger;
       localStorage.clear();
       const user = res.data.users.find(
         (user) => user.username === this.userDetails.username
       );
-      if (user) {
+      if (user && user.password === this.userDetails.password) {
         this.userDetails = new UserDetails(user);
         this.userDetails.isLoggedIn = true;
+        this.userStore.login(this.userDetails);
         this.$router.push({ name: "TodoList" });
+      } else {
+        this.message.type = "error";
+        this.message.text = "Invalid, try again or click more options.";
       }
     },
     watchInput(event) {
