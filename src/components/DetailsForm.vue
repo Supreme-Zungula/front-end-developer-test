@@ -1,43 +1,44 @@
 <template>
-  <div class="bg-white text-black text-bold my-4">
+  <div class="bg-white text-black text-bold my-4 p-2">
+    <h2 class="text-center">{{ formLabel }}</h2>
     <form class="text-lg">
-      <div class="grid grid-rows-2 p-2">
-        <label for="email">Email address</label>
+      <div class="grid grid-rows-2">
+        <label class="font-bold" for="email">Email address</label>
         <input
           type="text"
           name="email"
-          class="border border-gray-400 rounded-md"
+          class="border border-gray-400 rounded-md px-2"
           v-model="userDetails.email"
           @change="watchInput"
         />
       </div>
-      <div class="grid grid-rows-2 p-2">
-        <label for="username">Username</label>
+      <div class="grid grid-rows-2">
+        <label class="font-bold" for="username">Username</label>
         <input
           type="text"
           name="username"
-          class="border border-gray-400 rounded-md"
+          class="border border-gray-400 rounded-md px-2"
           v-model="userDetails.username"
           @change="watchInput"
         />
       </div>
-      <div class="grid grid-rows-2 p-2">
-        <label for="password">Password</label>
+      <div class="grid grid-rows-2">
+        <label class="font-bold" for="password">Password</label>
         <input
           type="password"
           name="password"
-          class="border border-gray-400 rounded-md"
+          class="border border-gray-400 rounded-md px-2"
           v-model="userDetails.password"
           @change="watchInput"
         />
       </div>
     </form>
-    <div class="grid grid-cols-2 gap-4 p-2 text-white text-lg">
+    <div class="grid grid-cols-2 gap-4 my-4 text-white text-lg">
       <button @click="handleCancel" class="bg-red-400 rounded-md p-2">
         Cancel
       </button>
       <button
-        class="bg-cyan-400 rounded-md p-2"
+        class="bg-cyan-500 rounded-md p-2 disabled:opacity-25"
         :disabled="!isFilledIn.details"
         @click="submitDetails"
       >
@@ -64,6 +65,11 @@ export default {
       default() {
         return "Cancel";
       },
+    },
+    formLabel: {
+      type: String,
+      required: false,
+      default: "",
     },
   },
   data() {
