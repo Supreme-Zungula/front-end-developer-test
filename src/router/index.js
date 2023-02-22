@@ -29,6 +29,11 @@ const router = createRouter({
       name: "DeleteAccount",
       component: () => import("@/views/DeleteAccount.vue"),
     },
+    {
+      path: "/review-account",
+      name: "ReviewAccount",
+      component: () => import("@/views/ReviewAccountDetails.vue"),
+    },
   ],
 });
 

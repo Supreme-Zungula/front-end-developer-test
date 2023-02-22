@@ -9,7 +9,10 @@
     <div>
       <h2 class="text-xl font-bold my-4">Settings</h2>
       <ul class="text-lg">
-        <li class="text-gray-700 hover:cursor-pointer mb-1">
+        <li
+          class="text-gray-700 hover:cursor-pointer mb-1"
+          @click="reviewAccountDetails"
+        >
           Review account details
         </li>
         <li
@@ -32,6 +35,9 @@ export default {
     };
   },
   methods: {
+    reviewAccountDetails() {
+      this.$router.push({ name: "ReviewAccount" });
+    },
     goToPreviousPage() {
       this.$router.go(-1);
     },
