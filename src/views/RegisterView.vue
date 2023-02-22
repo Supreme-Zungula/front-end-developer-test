@@ -1,50 +1,23 @@
 <template>
   <div class="container">
     <h1>Register</h1>
-    <form class="app-form">
-      <label for="email">Email address</label>
-      <input
-        type="text"
-        name="email"
-        v-model="userDetails.email"
-        @change="watchInput"
-      />
-      <label for="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        v-model="userDetails.username"
-        @change="watchInput"
-      />
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        v-model="userDetails.password"
-        @change="watchInput"
-      />
-    </form>
-    <div
-      :class="message.type === 'success' ? 'text-green-300' : 'text-red-500'"
-    >
-      <p>{{ message.text }}</p>
-    </div>
-    <div class="btn-container">
-      <button @click="handleCancel" class="danger">Cancel</button>
-      <button
-        @click="submitDetails"
-        class="default"
-        :disabled="!isFilledIn.details"
-      >
-        Register
-      </button>
-    </div>
+    <h3>Enter your details to register for an account</h3>
+    <DetailsForm
+      :submitLabel="'Register'"
+      @submit="submitDetails"
+      @cancel="handleCancel"
+    />
   </div>
 </template>
 <script>
 import UserDetails from "@/classes/UserDetails";
+import DetailsForm from "@/components/DetailsForm.vue";
 
 export default {
+  name: "RegisterView",
+  components: {
+    DetailsForm,
+  },
   data() {
     return {
       userDetails: new UserDetails(),
@@ -61,13 +34,10 @@ export default {
     };
   },
   methods: {
-    submitDetails() {
+    submitDetails(userDetails) {
       localStorage.clear();
-      if (!localStorage.getItem(this.userDetails.username)) {
-        localStorage.setItem(
-          this.userDetails.username,
-          JSON.stringify(this.userDetails)
-        );
+      if (!localStorage.getItem(userDetails.username)) {
+        localStorage.setItem(userDetails.username, JSON.stringify(userDetails));
         this.message.type = "success";
         this.message.text = "Your registration was successful.";
       } else {
@@ -111,46 +81,5 @@ export default {
 .container h1 {
   display: inline;
   font-size: 25px;
-}
-.app-form {
-  display: block;
-  border: 1px solid white;
-  border-radius: 15px;
-  padding: 15px;
-  max-width: 600px;
-  margin: 20px auto;
-}
-.app-form label {
-  display: inline-block;
-  width: 100px;
-}
-
-.app-form input {
-  padding: 5px;
-  color: white;
-  border: 2px white;
-  background: grey;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.btn-container button {
-  font-size: large;
-  min-width: 100px;
-  color: white;
-  margin: 15px 5px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid grey;
-}
-.btn-container button.danger {
-  background-color: red;
-}
-
-.btn-container button.default {
-  background-color: aqua;
-}
-.btn-container button:disabled {
-  opacity: 0.5;
 }
 </style>
