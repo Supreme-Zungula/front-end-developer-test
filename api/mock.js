@@ -68,6 +68,12 @@ app.get("/users", (req, res) => {
   res.send({ users });
 });
 
+// get user by username
+app.get("/users", (req, res) => {
+  const user = user.find((user) => user.username === req.body.username);
+  res.send({ user });
+});
+
 app.get("/users/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const user = users.find((user) => user.id === id);
@@ -93,6 +99,7 @@ app.put("/users/:id", (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
+    e,
   };
   res.send({ data: users[userIndex] });
 });
