@@ -20,6 +20,11 @@ export const useUserStore = defineStore("user", () => {
     user.value.password = userDetails.password;
     user.value.loggedIn = userDetails.isLoggedIn;
   };
+  const update = (userDetails) => {
+    user.value.username = userDetails.username;
+    user.value.email = userDetails.email;
+    user.value.password = userDetails.password;
+  };
 
   const logout = () => {
     user.value.id = null;
@@ -33,5 +38,5 @@ export const useUserStore = defineStore("user", () => {
     return user.value.loggedIn;
   });
 
-  return { user, login, logout, isLoggedIn };
+  return { user, login, update, logout, isLoggedIn };
 });

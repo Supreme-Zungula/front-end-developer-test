@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+import { updateUser } from "@/api/users";
 import DetailsForm from "@/components/DetailsForm.vue";
 import { useUserStore } from "@/stores/user";
 export default {
@@ -28,9 +29,20 @@ export default {
       this.$router.push({ name: "Login" });
     }
   },
+  computed: {
+    userStore() {
+      const userStore = useUserStore();
+      return userStore;
+    },
+  },
   methods: {
-    submitNewDetails(details) {
-      console.log(details);
+    submitNewDetails(userDetails) {
+      console.log(userDetails);
+      updateUser(this.userStore.user.id, userDetails)
+        .then((res) => {
+          this.userStore.update(res.data);
+        })
+        .catch((err) => console.error(err));
     },
     handleCancel() {
       this.$router.go(-1);

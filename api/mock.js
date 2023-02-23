@@ -93,7 +93,6 @@ app.put("/users/:id", (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    e,
   };
   res.send({ data: users[userIndex] });
 });
