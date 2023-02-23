@@ -9,7 +9,7 @@
           name="email"
           class="border border-gray-400 rounded-md px-2"
           v-model="userDetails.email"
-          @change="watchInput"
+          @input="watchInput"
         />
       </div>
       <div class="grid grid-rows-2">
@@ -19,7 +19,7 @@
           name="username"
           class="border border-gray-400 rounded-md px-2"
           v-model="userDetails.username"
-          @change="watchInput"
+          @input="watchInput"
         />
       </div>
       <div class="grid grid-rows-2">
@@ -29,26 +29,28 @@
           name="password"
           class="border border-gray-400 rounded-md px-2"
           v-model="userDetails.password"
-          @change="watchInput"
+          @input="watchInput"
         />
       </div>
     </form>
     <div class="grid grid-cols-2 gap-4 my-4 text-white text-lg">
       <button @click="handleCancel" class="bg-red-400 rounded-md p-2">
-        Cancel
+        {{ cancelLabel }}
       </button>
       <button
         class="bg-cyan-500 rounded-md p-2 disabled:opacity-25"
         :disabled="!isFilledIn.details"
         @click="submitDetails"
       >
-        Register
+        {{ submitLabel }}
       </button>
     </div>
   </div>
 </template>
 <script>
 import UserDetails from "@/classes/UserDetails";
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "DetailsForm",
   props: {
@@ -83,6 +85,17 @@ export default {
       },
     };
   },
+  computed: {
+    userStore() {
+      return useUserStore();
+    },
+  },
+  mounted() {
+    if (!useUserStore.isLoggedIn) {
+      this.userDetails = new UserDetails(this.userStore.user);
+      this.evaluateInputFields();
+    }
+  },
   methods: {
     submitDetails() {
       this.$emit("submit", this.userDetails);
@@ -93,21 +106,36 @@ export default {
     watchInput(event) {
       switch (event.target.name) {
         case "email":
-          this.isFilledIn.email = true;
+          this.isFilledIn.email = this.isFilled(event.target.value);
+          this.evaluateInputFields();
           break;
         case "username":
-          this.isFilledIn.username = true;
+          this.isFilledIn.username = this.isFilled(event.target.value);
+          this.evaluateInputFields();
           break;
         case "password":
-          this.isFilledIn.password = true;
+          this.isFilledIn.password = this.isFilled(event.target.value);
+          this.evaluateInputFields();
           break;
         default:
           break;
       }
+    },
+    isFilled(value) {
+      if (value.length !== 0) {
+        return true;
+      }
+      this.isFilledIn.details = false;
+      return false;
+    },
+    evaluateInputFields() {
       if (
-        this.isFilledIn.email &&
-        this.isFilledIn.username &&
-        this.isFilledIn.password
+        this.userDetails.email &&
+        this.userDetails.email.length &&
+        this.userDetails.username &&
+        this.userDetails.username.length &&
+        this.userDetails.password &&
+        this.userDetails.password.length
       ) {
         this.isFilledIn.details = true;
       }
