@@ -26,6 +26,8 @@
   </div>
 </template>
 <script>
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "SettingsView",
   components: {},
@@ -33,6 +35,12 @@ export default {
     return {
       showModal: false,
     };
+  },
+  beforeCreate() {
+    const userStore = useUserStore();
+    if (!userStore.isLoggedIn) {
+      this.$router.push({ name: "Login" });
+    }
   },
   methods: {
     reviewAccountDetails() {

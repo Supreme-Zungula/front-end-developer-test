@@ -15,8 +15,16 @@
   </div>
 </template>
 <script>
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "DeleteAccount",
+  beforeCreate() {
+    const userStore = useUserStore();
+    if (!userStore.isLoggedIn) {
+      this.$router.push({ name: "Login" });
+    }
+  },
   methods: {
     handleCancel() {
       this.$router.go(-1);
