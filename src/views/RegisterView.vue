@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
-    <h1>Register</h1>
-    <h3>Enter your details to register for an account</h3>
-    <p>{{ message.text }}</p>
+  <div class="bg-white text-black my-4 p-4">
+    <h1 class="text-2xl text-w">Register</h1>
+    <h3 class="text-lg mt-2">Enter your details to register for an account</h3>
+    <p :class="message.type == 'error' ? 'text-red-500 m-2' : 'text-black m-2'">
+      {{ message.text }}
+    </p>
     <DetailsForm
       :submitLabel="'Register'"
       @submit="submitDetails"
@@ -37,7 +39,6 @@ export default {
     fetchUsers(userDetails) {
       getUserList()
         .then((res) => {
-          console.log(res.data);
           const user = res.data.users.find(
             (user) => user.username === userDetails.username
           );
@@ -70,13 +71,4 @@ export default {
   },
 };
 </script>
-<style>
-.container h1 {
-  display: inline;
-  font-size: 25px;
-}
-.container h1 {
-  display: inline;
-  font-size: 25px;
-}
-</style>
+<style></style>
