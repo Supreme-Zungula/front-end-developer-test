@@ -11,7 +11,7 @@
 </template>
 <script>
 import DetailsForm from "@/components/DetailsForm.vue";
-
+import { useUserStore } from "@/stores/user";
 export default {
   name: "ReviewAccount",
   components: {
@@ -21,6 +21,12 @@ export default {
     return {
       formLabel: "Edit your account details here",
     };
+  },
+  beforeCreate() {
+    const userStore = useUserStore();
+    if (!userStore.isLoggedIn) {
+      this.$router.push({ name: "Login" });
+    }
   },
   methods: {
     submitNewDetails(details) {
