@@ -2,6 +2,7 @@
   <div class="container">
     <h1>Register</h1>
     <h3>Enter your details to register for an account</h3>
+    <p>{{ message.text }}</p>
     <DetailsForm
       :submitLabel="'Register'"
       @submit="submitDetails"
@@ -10,7 +11,7 @@
   </div>
 </template>
 <script>
-import UserDetails from "@/classes/UserDetails";
+import { createUser, getUserList } from "@/api/users";
 import DetailsForm from "@/components/DetailsForm.vue";
 
 export default {
@@ -20,7 +21,6 @@ export default {
   },
   data() {
     return {
-      userDetails: new UserDetails(),
       isFilledIn: {
         email: false,
         username: false,
@@ -34,41 +34,38 @@ export default {
     };
   },
   methods: {
-    submitDetails(userDetails) {
-      localStorage.clear();
-      if (!localStorage.getItem(userDetails.username)) {
-        localStorage.setItem(userDetails.username, JSON.stringify(userDetails));
-        this.message.type = "success";
-        this.message.text = "Your registration was successful.";
-      } else {
-        this.message.text = "Username already taken.";
-        this.message.type = "error";
-      }
+    fetchUsers(userDetails) {
+      getUserList()
+        .then((res) => {
+          console.log(res.data);
+          const user = res.data.users.find(
+            (user) => user.username === userDetails.username
+          );
+          if (user) {
+            this.message.type = "error";
+            this.message.text = "Username already taken.";
+          } else {
+            this.addUser(userDetails);
+          }
+        })
+        .catch((err) => console.error(err));
     },
+
+    addUser(userDetails) {
+      createUser(userDetails)
+        .then((res) => {
+          console.log(res.data);
+          this.$router.push({ name: "Login" });
+        })
+        .catch((err) => console.error(err));
+    },
+
+    submitDetails(userDetails) {
+      this.fetchUsers(userDetails);
+    },
+
     handleCancel() {
       this.$router.push({ name: "Login" });
-    },
-    watchInput(event) {
-      switch (event.target.name) {
-        case "email":
-          this.isFilledIn.email = true;
-          break;
-        case "username":
-          this.isFilledIn.username = true;
-          break;
-        case "password":
-          this.isFilledIn.password = true;
-          break;
-        default:
-          break;
-      }
-      if (
-        this.isFilledIn.email &&
-        this.isFilledIn.username &&
-        this.isFilledIn.password
-      ) {
-        this.isFilledIn.details = true;
-      }
     },
   },
 };
