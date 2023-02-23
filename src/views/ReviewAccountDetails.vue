@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     submitNewDetails(userDetails) {
-      console.log(userDetails);
       updateUser(this.userStore.user.id, userDetails)
         .then((res) => {
           this.userStore.update(res.data);
