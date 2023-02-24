@@ -52,10 +52,10 @@
 </template>
 <script>
 import {
-createTodoItem,
-deleteTodoItem,
-getTodoList,
-updateTodoItem
+  createTodoItem,
+  deleteTodoItem,
+  getTodoList,
+  updateTodoItem,
 } from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
