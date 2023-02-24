@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <main class="lg:flex lg:items-center lg:min-h-full">
