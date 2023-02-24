@@ -16,12 +16,14 @@
       </button>
       <button
         class="min-h-[50px] bg-yellow-400 w-full rounded-md"
+        v-show="selectedItems"
         @click="clearSelectedTasks"
       >
         Clear Selected
       </button>
       <button
         class="min-h-[50px] bg-orange-400 w-full rounded-md"
+        v-show="selectedAll || selectedItems"
         @click="deleteSelectedTasks"
       >
         Delete Selected
@@ -50,10 +52,10 @@
 </template>
 <script>
 import {
-  createTodoItem,
-  deleteTodoItem,
-  getTodoList,
-  updateTodoItem,
+createTodoItem,
+deleteTodoItem,
+getTodoList,
+updateTodoItem
 } from "@/api/todoList";
 import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
@@ -68,7 +70,7 @@ export default {
   data() {
     return {
       todoList: [],
-      selectedOne: false,
+      selectedItems: false,
       selectedAll: false,
       isLoading: {
         todoList: false,
@@ -133,7 +135,7 @@ export default {
     selectItem(todo) {
       this.todoList = this.todoList.map((item) => {
         if (item.id === todo.id) {
-          this.selectedOne = !this.selectedOne;
+          this.selectedItems = true;
           return { ...item, selected: !todo.selected };
         }
         return item;
@@ -155,6 +157,8 @@ export default {
       if (this.todoList.length === 0) {
         return;
       }
+      this.selectedAll = false;
+      this.selectedItems = false;
       let promises = [];
       this.todoList.map((item) => {
         if (item.selected) {
@@ -166,6 +170,7 @@ export default {
       }
     },
     clearSelectedTasks() {
+      this.selectedItems = !this.selectedItems;
       this.todoList = this.todoList.map((item) => {
         if (item.selected) {
           return { ...item, selected: false };
