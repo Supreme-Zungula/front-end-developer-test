@@ -10,19 +10,32 @@
       @submit="submitDetails"
       @cancel="handleCancel"
     />
+    <Modal :show="showConfirmation">
+      <ShowMessage
+        :show="showConfirmation"
+        :message="message"
+        :type="message.type"
+        @confirm="hidePopup"
+      />
+    </Modal>
   </div>
 </template>
 <script>
 import { createUser, getUserList } from "@/api/users";
 import DetailsForm from "@/components/DetailsForm.vue";
+import Modal from "@/components/Modal.vue";
+import ShowMessage from "@/components/ShowMessage.vue";
 
 export default {
   name: "RegisterForm",
   components: {
     DetailsForm,
+    Modal,
+    ShowMessage,
   },
   data() {
     return {
+      showConfirmation: false,
       isFilledIn: {
         email: false,
         username: false,
@@ -30,8 +43,9 @@ export default {
         details: false,
       },
       message: {
+        header: null,
         text: null,
-        type: null,
+        type: "default",
       },
     };
   },
@@ -55,7 +69,11 @@ export default {
     addUser(userDetails) {
       createUser(userDetails)
         .then(() => {
-          this.$router.push({ name: "Login" });
+          this.message.type = "success";
+          this.message.header = "Your registration was successful.";
+          this.message.text =
+            "Follow the link sent to your email to verify your account and login.";
+          this.showConfirmation = true;
         })
         .catch((err) => console.error(err));
     },
@@ -65,6 +83,10 @@ export default {
     },
 
     handleCancel() {
+      this.$router.push({ name: "Login" });
+    },
+    hidePopup() {
+      this.showConfirmation = false;
       this.$router.push({ name: "Login" });
     },
   },
