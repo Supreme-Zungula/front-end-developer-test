@@ -1,6 +1,7 @@
 <template>
   <div class="container text-white bg-gray-900 p-10 rounded-lg w-full">
     <h1 class="text-2xl mb-5 font-bold">Login</h1>
+    <p class="text-red-400">{{ message.text }}</p>
     <form class="login-form grid grid-rows-2">
       <div class="mb-6">
         <label class="block mb-2 text-md dark:text-white font-bold">
@@ -84,7 +85,7 @@ export default {
         this.$router.push({ name: "TodoList" });
       } else {
         this.message.type = "error";
-        this.message.text = "Invalid, try again or click more options.";
+        this.message.text = "Invalid details, try again or click more options.";
       }
     },
     watchInput(event) {
