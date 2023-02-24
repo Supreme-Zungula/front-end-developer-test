@@ -1,6 +1,9 @@
 <template>
-  <div v-if="show" class="modal-bg backdrop-blur-md bg-white/30 ...">
-    <div class="modal z-40 blu">
+  <div
+    v-if="show"
+    class="fixed inset-0 backdrop-blur-sm flex justify-center items-center m-4 z-40"
+  >
+    <div class="bg-white p-2 rounded-md">
       <slot>Modal View</slot>
     </div>
   </div>

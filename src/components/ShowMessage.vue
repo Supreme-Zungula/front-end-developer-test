@@ -1,21 +1,30 @@
 <template setup>
-  <div v-if="show" class="grid grid-rows-2">
-    <div class="">
-      <h3 v-if="type === 'success'" class="text-green-400">{{ message }}</h3>
-      <h3 v-else-if="type === 'warning'" class="text-orange-400">
-        {{ message }}
-      </h3>
-      <h3 v-else-if="type === 'danger'" class="text-red-400">{{ message }}</h3>
-      <h3 v-else class="text-black">{{ message }}</h3>
+  <div v-if="show" class="grid grid-rows-2 text-center p-4 bg-white">
+    <div v-if="type === 'success'" class="text-green-600">
+      <h3 class="my-2 text-xl">{{ message.header }}</h3>
+      <p>{{ message.text }}</p>
     </div>
-    <button class="bg-green-300 justify-self-center" @click="handleOkClick">
+    <div v-else-if="type === 'warning'" class="text-orange-400">
+      <h3 class="my-2 text-xl">{{ message.header }}</h3>
+      <p>{{ message.text }}</p>
+    </div>
+    <div v-else-if="type === 'danger'" class="text-red-400">
+      <h3 class="my-2 text-xl">{{ message.header }}</h3>
+      <p>{{ message.text }}</p>
+    </div>
+    <div v-else class="text-black">
+      <h3 class="my-2 text-xl">{{ message.header }}</h3>
+      <p>{{ message.text }}</p>
+    </div>
+    <button
+      class="bg-green-400 justify-self-center m-4 p-2 rounded-md min-w-[20%] text-white text-lg"
+      @click="$emit('confirm')"
+    >
       OK
     </button>
   </div>
 </template>
 <script>
-import { defineEmits } from "vue";
-
 export default {
   name: "ShowMessage",
   props: {
@@ -27,15 +36,12 @@ export default {
       },
     },
     message: {
-      type: String,
+      type: Object,
       required: true,
-      default() {
-        return "Display message here";
-      },
     },
     type: {
       type: String,
-      required: true,
+      required: false,
       validator(value) {
         return ["default", "success", "warning", "danger"].includes(value);
       },
@@ -45,14 +51,7 @@ export default {
     },
   },
   setup() {
-    const emit = defineEmits(["confirm", "cancel"]);
-    const handleOkClick = () => {
-      emit("confirm");
-    };
-
-    return {
-      handleOkClick,
-    };
+    return {};
   },
 };
 </script>
