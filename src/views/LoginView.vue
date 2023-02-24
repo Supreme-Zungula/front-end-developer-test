@@ -13,7 +13,7 @@
       <input
         type="password"
         name="password"
-        v-bind="password"
+        v-model="password"
         @change="watchInput"
       />
     </form>
@@ -26,10 +26,13 @@
   </div>
 </template>
 <script>
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "LoginView",
   data() {
     return {
+      userStore: useUserStore(),
       username: "",
       password: "",
       isFilledIn: {
@@ -40,12 +43,19 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      if (localStorage.getItem("username")) {
-        let storedData = localStorage.getItem("username");
-        const userData = JSON.parse(storedData);
+    async handleLogin() {
+      if (localStorage.getItem(this.username)) {
+        let storedData = localStorage.getItem(this.username);
+        const userData = await JSON.parse(storedData);
+
+        if (this.password === userData.password) {
+          this.userStore.login(userData);
+          console.log(this.userStore);
+          this.$router.push({ name: "TodoList" });
+        }
+        console.log(userData);
       } else {
-        alert("Username not registered. Click More options to register.");
+        alert("Incorrect details, try again or click More options.");
       }
     },
     watchInput(event) {
