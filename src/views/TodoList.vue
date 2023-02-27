@@ -1,4 +1,5 @@
 <template>
+
   <div class="bg-white text-black p-5 mb-5 max-h-screen">
     <AddItem @add-task="createNewTask" />
     <div class="grid grid-cols-2 gap-x-2 gap-y-3 text-white text-lg mx-5">
@@ -47,10 +48,12 @@
         @click="selectItem(todo)"
         @done="markItemAsDone(todo)"
       />
+
     </div>
   </div>
 </template>
 <script>
+
 import {
   createTodoItem,
   deleteTodoItem,
@@ -61,10 +64,12 @@ import { useUserStore } from "@/stores/user";
 import AddItem from "./AddItem.vue";
 import TodoItem from "./TodoItem.vue";
 
+
 export default {
   name: "TodoList",
   components: {
     AddItem,
+
     TodoItem,
   },
   data() {
@@ -202,7 +207,8 @@ export default {
           console.error(err);
         });
     },
+
   },
 };
 </script>
-<style lang=""></style>
+<style></style>

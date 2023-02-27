@@ -4,11 +4,14 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+const bodyParser = require("body-parser");
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 let todos = [
   { id: 1, title: "Take out the trash", completed: false },
